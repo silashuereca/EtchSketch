@@ -59,6 +59,7 @@ body {
 .main-container .etch-container div {
   width: 100%;
   height: 100%;
+  border: 1px solid gray;
 }
 
 /*# sourceMappingURL=main.css.map */

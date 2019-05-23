@@ -4,11 +4,14 @@ const setGrid = document.getElementById('setGridBtn')
 setGrid.addEventListener('click', changeGrid);
 
 function changeGrid() {
-  let gridSize = parseInt(document.getElementById('gridSize').value);
+  let gridSize = prompt('Choose grid size 1-100')
+  if (gridSize > 100) {
+    return alert('Too big of a grid. Please enter grid size 1-100')
+  }
   
 
 
-    function generateGrid(gridSize){
+    function generateGrid(){
     let totalGridNum = gridSize * gridSize;
     
 
@@ -31,6 +34,7 @@ function changeGrid() {
                 div.addEventListener('mouseover', changeColor);
                 function changeColor() {
                   div.style.backgroundColor = 'black';
+                  
                 }
 
               }
@@ -56,8 +60,6 @@ function changeGrid() {
       generateGrid(gridSize)
 
 }
-
-changeGrid()
 
 
 function clearGrid() {
