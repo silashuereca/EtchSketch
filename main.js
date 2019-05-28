@@ -1,75 +1,107 @@
 
+// navigation btns and listeners
+const reset = document.getElementById('btn')
+reset.addEventListener('click', resetPage, false)
 
-const setGrid = document.getElementById('setGridBtn')
-setGrid.addEventListener('click', changeGrid);
+const gridSize = document.getElementById('setGridBtn');
+gridSize.addEventListener('click', setGridSize, false);
 
-function changeGrid() {
-  let gridSize = prompt('Choose grid size 1-100')
-  if (gridSize > 100) {
-    return alert('Too big of a grid. Please enter grid size 1-100')
+
+// reseting grid
+function resetPage() {
+  window.location.reload(true)
+}
+
+// setting the grid size and storing into a variable
+function setGridSize() {
+  let gridSize = prompt('choose your gird size between 1-50')
+
+  if(gridSize > 50) {
+   return alert('Too big of a grid')
+  } else {
+    return generateGrid(gridSize);
   }
+}
+
+
+// change rgb  values to random
+function changeToRandomColor() {
+  let divColor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+
+  return changeDivColor(divColor);
+}
+
+// change color back to its default value
+// function colorToBlack() {
+// let divColor = 'black'
+
+// return changeDivColor(divColor);
+// }
+
+
+
+
+
+
+function generateGrid(number) {
   
 
 
-    function generateGrid(){
-    let totalGridNum = gridSize * gridSize;
-    
-
+        let totalGridNum = number * number;
+  
         for (let i = 0; i < totalGridNum; i++) {
 
 
           //Creating a new div element for grid
           const row = document.getElementById('etchContainer');
           let container = document.querySelector('.etch-container');
-          container.style.cssText = `grid-template-columns: repeat(${gridSize}, 1fr); grid-template-rows: repeat(${gridSize}, 1fr)`;
+          container.style.cssText = `grid-template-columns: repeat(${number}, 1fr); grid-template-rows: repeat(${number}, 1fr)`;
           let div = document.createElement('div')
           
           row.append(div);
 
-              //Change each div color to normal black 
-              const blackAndWhiteBtn = document.getElementById('blackAndWhite');
-              blackAndWhiteBtn.addEventListener('click', changeToBlack)
-              
-              function changeToBlack() {
-                div.addEventListener('mouseover', changeColor);
-                function changeColor() {
-                  div.style.backgroundColor = 'black';
-                  
-                }
+          //declaring color variables and event listeners
+          const blackAndWhite = document.getElementById('blackAndWhite');
+          blackAndWhite.addEventListener('click', colorToBlack, false)
 
-              }
+          const randomColor = document.getElementById('changeColorBtn');
+          randomColor.addEventListener('click', changeToRandomColor, false)
 
-              changeToBlack()
+          // changing the color to black
+          function colorToBlack() {
+            
+                  div.addEventListener('mouseover', changeDivColor, false);
 
-              //Change div color to random rgb value
-              const changeColorBtn = document.getElementById('changeColorBtn');
-              changeColorBtn.addEventListener('click', function(){
+                  function changeDivColor() {
+                    div.style.backgroundColor = `black`
+                  }
+            
+            }
 
-                div.addEventListener('mouseover', changeColor);
-              function changeColor() {
-                div.style.backgroundColor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-              }
-          
-              })
-          
-        }
-    
+          function changeToRandomColor() {
+           
+            
+            div.addEventListener('mouseover', randomColor, false) 
 
-      }
+             function randomColor(){ 
+               div.style.backgroundColor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+             }
+          }         
 
-      generateGrid(gridSize)
+    }
 
 }
 
+generateGrid()
 
-function clearGrid() {
-  const clear = document.getElementById('btn')
-  clear.addEventListener('click', function(){
-    window.location.reload(true)
-  })
-}
 
-clearGrid()
+
+
+
+
+
+
+
 
 
 
