@@ -15,6 +15,7 @@ function resetPage() {
 // setting the grid size and storing into a variable
 function setGridSize() {
   let gridSize = prompt('choose your gird size between 1-50')
+  
 
   if(gridSize > 50) {
    return alert('Too big of a grid')
@@ -23,20 +24,6 @@ function setGridSize() {
   }
 }
 
-
-// change rgb  values to random
-function changeToRandomColor() {
-  let divColor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-
-  return changeDivColor(divColor);
-}
-
-// change color back to its default value
-// function colorToBlack() {
-// let divColor = 'black'
-
-// return changeDivColor(divColor);
-// }
 
 
 
@@ -60,6 +47,15 @@ function generateGrid(number) {
           
           row.append(div);
 
+          //clearing grid
+          const clearGrid = document.getElementById('clearBtn');
+          clearGrid.addEventListener('click', backToWhite, false);
+
+          function backToWhite(){
+            div.style.backgroundColor = 'white';
+          }
+
+
           //declaring color variables and event listeners
           const blackAndWhite = document.getElementById('blackAndWhite');
           blackAndWhite.addEventListener('click', colorToBlack, false)
@@ -77,6 +73,8 @@ function generateGrid(number) {
                   }
             
             }
+
+            
 
           function changeToRandomColor() {
            
